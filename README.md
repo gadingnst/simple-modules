@@ -130,11 +130,11 @@ try {
 
 ## 2. Input Class
 ```php
-$get = Input::get('key') // return $_GET['key']
-$post = Input::post('key') // returns $_POST['key']
-$gets = Input::get() // returns $_GET
-$posts = Input::post() // returns $_POST
-$gain = Input::gain('key') // check if that 'key' is set in $_POST['key'] it will be return $_POST['key'] or if that 'key' is set in $_GET['key'] it will be return $_GET['key']
+$get = Input::get('key'); // return $_GET['key']
+$post = Input::post('key'); // returns $_POST['key']
+$gets = Input::get(); // returns $_GET
+$posts = Input::post(); // returns $_POST
+$gain = Input::gain('key'); // check if that 'key' is set in $_POST['key'] it will be return $_POST['key'] or if that 'key' is set in $_GET['key'] it will be return $_GET['key']
 ```
 
 #### Other example with if statement
