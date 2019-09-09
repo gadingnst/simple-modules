@@ -44,14 +44,14 @@ class DB {
     }
     $paramStr = implode(", ", array_keys(self::$params));
     self::$query = "INSERT INTO {$tabel} ({$columns}) VALUES ({$paramStr});";
-    return self::execute();
+    return (new self)->execute();
   }
   
   public static function delete($table, $column, $value){
     self::clearParams();
     self::$params[self::setParam($column)] = $value;
     self::$query = "DELETE FROM {$table} WHERE {$column} = '{$value}';";
-    return self::execute();
+    return (new self)->execute();
   }
   
   public static function update($table, $column, $value, $set = []){
@@ -65,7 +65,7 @@ class DB {
     }
     $setResult = self::removeLastString($setResult, ', ');
     self::$query = "UPDATE {$table} SET {$setResult} WHERE {$column} = '{$value}';";
-    return self::execute();
+    return (new self)->execute();
   }
 
   public function where($conditions = [], $optionalClauses = ""){
@@ -88,7 +88,7 @@ class DB {
     return $this;
   }
 
-  private static function execute($statement = false){
+  public function execute($statement = false){
     $dbh = self::connect();
     try {
       $stmt = $dbh->prepare(self::$query);
@@ -110,7 +110,7 @@ class DB {
   
   public function fetch($all = false) {
     try {
-      $stmt = self::execute(1);
+      $stmt = (new self)->execute(1);
       self::$data = $all ? $stmt->fetchAll(PDO::FETCH_OBJ) : $stmt->fetch(PDO::FETCH_OBJ);
     } catch (PDOException $e) {
       throw new PDOException($e->getMessage(), $e->getCode());
