@@ -10,12 +10,12 @@ date_default_timezone_set('Asia/Jakarta');
 
 function redirect($url){
   if (!headers_sent()) {
-      header('Location: '.$url);
+    header('Location: '.$url);
   } else {
-      echo '
-          <script type="text/javascript">window.location.href="'.$url.'";</script>
-          <noscript><meta http-equiv="refresh" content="0;url='.$url.'" /></noscript>
-      ';
+    echo '
+      <script type="text/javascript">window.location.href="'.$url.'";</script>
+      <noscript><meta http-equiv="refresh" content="0;url='.$url.'" /></noscript>
+    ';
   }
   exit();
 }
