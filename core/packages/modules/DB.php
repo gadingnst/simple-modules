@@ -2,8 +2,7 @@
 
 class DB {
 
-  public static $dbh;
-  private static $query = "", $params = [], $data = [];
+  private static $dbh, $query = "", $params = [], $data = [];
   
   public function __construct() { }
   
